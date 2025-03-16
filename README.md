@@ -177,12 +177,62 @@ also supports a number of commands that can be found in their respective
 \* - For more information on our different builds, check out our [Deploy
 Docs][deployment-docs]
 
-## Project
+## Project Structure
 
 The OHIF Medical Image Viewing Platform is maintained as a
 [`monorepo`][monorepo]. This means that this repository, instead of containing a
-single project, contains many projects. If you explore our project structure,
-you'll see the following:
+single project, contains many projects. The main directories and their purposes are:
+
+### Core Directories
+
+- **platform/**
+  - `app/`: Main application entry point and routing configuration
+  - `core/`: Business logic and services
+  - `ui/`: React component library
+  - `i18n/`: Internationalization support
+  - `docs/`: Documentation
+
+- **extensions/**: Contains various extensions that add functionality to the viewer
+  - `default/`: Basic set of useful functionalities
+  - `cornerstone/`: Image rendering and tools with Cornerstone3D
+  - `dicom-pdf/`: PDF rendering
+  - `dicom-video/`: Video support
+  - `measurement-tracking/`: Longitudinal measurement tracking
+
+- **modes/**: Contains different viewing modes
+  - `basic-dev-mode/`: Basic development mode
+  - `longitudinal/`: Longitudinal mode for measurement tracking
+  - `microscopy/`: Whole Slide Microscopy mode
+  - `tmtv/`: Total Metabolic Tumor Volume calculation mode
+
+### Entry Points
+
+- Main application entry: `platform/app/src/index.tsx`
+- Development server entry: `platform/app/src/dev.tsx`
+
+### Routing Configuration
+
+Routing is configured in `platform/app/src/routes/`. The main routes include:
+
+- `/`: Default viewer route
+- `/viewer`: Main DICOM viewer
+- `/microscopy`: Microscopy viewer
+- `/tmtv`: TMTV calculation mode
+
+To add new pages:
+
+1. Create a new component in `platform/app/src/routes/`
+2. Add the route configuration in `platform/app/src/routes/index.tsx`
+3. Create a corresponding mode in `modes/` if needed
+
+### Development Workflow
+
+1. Start development server: `yarn dev`
+2. The main application will be available at `http://localhost:3000`
+3. Use `yarn build` to create production builds
+4. Run tests with `yarn test:unit`
+
+If you explore the project structure, you'll see the following:
 
 ```bash
 .
