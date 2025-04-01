@@ -52,6 +52,7 @@ window.config = {
         enableStudyLazyLoad: true,
         supportsFuzzyMatching: false,
         supportsWildcard: true,
+        dicomUploadEnabled: true,
       },
     },
     {
