@@ -10,7 +10,8 @@ window.config = {
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers
-  showWarningMessageForCrossOrigin: true,
+  // showWarningMessageForCrossOrigin: true,
+  showWarningMessageForCrossOrigin: false,
   showCPUFallbackMessage: true,
   showLoadingIndicator: true,
   experimentalStudyBrowserSort: false,
@@ -24,7 +25,7 @@ window.config = {
     prefetch: 25,
   },
   // filterQueryParam: false,
-  defaultDataSourceName: 'dicomweb',
+  defaultDataSourceName: 'Django DICOMWeb Server',
   /* Dynamic config allows user to pass "configUrl" query string this allows to load config without recompiling application. The regex will ensure valid configuration source */
   // dangerouslyUseDynamicConfig: {
   //   enabled: true,
@@ -36,6 +37,23 @@ window.config = {
   //   regex: /.*/,
   // },
   dataSources: [
+    {
+      namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
+      sourceName: 'Django DICOMWeb Server',
+      configuration: {
+        friendlyName: 'Django DICOMWeb Server',
+        wadoUriRoot: 'http://localhost:9000/api/dicom',
+        qidoRoot: 'http://localhost:9000/api/dicom',
+        wadoRoot: 'http://localhost:9000/api/dicom',
+        qidoSupportsIncludeField: false,
+        supportsReject: false,
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
+        enableStudyLazyLoad: true,
+        supportsFuzzyMatching: false,
+        supportsWildcard: true,
+      },
+    },
     {
       namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
       sourceName: 'dicomweb',
